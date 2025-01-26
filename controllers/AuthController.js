@@ -15,7 +15,11 @@ export const checkUser = async (request, response, next) => {
     } else
       return response.json({ msg: "User Found", status: true, data: user });
   } catch (error) {
-    next(error);
+    return response.json({
+      success: false,
+      error: true,
+      message: error.message
+    })
   }
 };
 
@@ -40,7 +44,12 @@ export const onBoardUser = async (request, response, next) => {
       return response.json({ msg: "Success", status: true });
     }
   } catch (error) {
-    next(error);
+    // next(error);
+    return response.json({
+      success: false,
+      error: true,
+      message: error.message
+    })
   }
 };
 
@@ -100,7 +109,12 @@ export const getAllUsers = async (req, res, next) => {
 
     return res.status(200).send({ users: usersGroupedByInitialLetter });
   } catch (error) {
-    next(error);
+    // next(error);
+    return res.json({
+      success: false,
+      error: true,
+      message: error.message
+    })
   }
 };
 
